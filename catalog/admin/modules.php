@@ -34,6 +34,10 @@
       case 'save':
         reset($HTTP_POST_VARS['configuration']);
         while (list($key, $value) = each($HTTP_POST_VARS['configuration'])) {
+          // USPS START
+          if (is_array($value))
+            $value = implode(', ', $value);
+          // USPS END
           tep_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = '" . $value . "' where configuration_key = '" . $key . "'");
         }
         tep_redirect(tep_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $HTTP_GET_VARS['module']));
@@ -293,7 +297,22 @@
         }
 
         $contents[] = array('text' => '<br />' . $mInfo->description);
-        $contents[] = array('text' => '<br />' . $keys);
+        // USPS START
+        //        $contents[] = array('text' => '<br>' . $keys);
+        $contents[] = array (
+          'text' => '<br />' . preg_replace(array (
+            '/RM/',
+            '/TM/',
+            '/International/',
+            '/Envelope/'
+          ), array (
+            '&reg;',
+            '&trade;',
+            'Int\'l',
+            'Env'
+          ), $keys)
+        );
+        // USPS END
       } elseif (isset($HTTP_GET_VARS['list']) && ($HTTP_GET_VARS['list'] == 'new')) {
         if (isset($mInfo)) {
           $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_MODULE_INSTALL, 'plus', tep_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $mInfo->code . '&action=install')));
