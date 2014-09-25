@@ -1,27 +1,16 @@
 <?php
-/*
-  $Id: configure.php,v 1.14 2003/02/21 16:55:24 dgw_ Exp $
 
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
+	error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE);
 
-  Copyright (c) 2002 osCommerce
-
-  Released under the GNU General Public License
-*/
-
-// define our webserver variables
-// FS = Filesystem (physical)
-// WS = Webserver (virtual)
-  define('HTTP_SERVER', ''); // eg, http://localhost or - https://localhost should not be NULL for productive servers
-  define('HTTP_CATALOG_SERVER', '');
-  define('HTTPS_CATALOG_SERVER', '');
-  define('ENABLE_SSL_CATALOG', 'false'); // secure webserver for catalog module
-  define('DIR_FS_DOCUMENT_ROOT', $DOCUMENT_ROOT); // where your pages are located on the server. if $DOCUMENT_ROOT doesnt suit you, replace with your local path. (eg, /usr/local/apache/htdocs)
-  define('DIR_WS_ADMIN', '/admin/');
-  define('DIR_FS_ADMIN', DIR_FS_DOCUMENT_ROOT . DIR_WS_ADMIN);
-  define('DIR_WS_CATALOG', '/catalog/');
-  define('DIR_FS_CATALOG', DIR_FS_DOCUMENT_ROOT . DIR_WS_CATALOG);
+  define('HTTP_SERVER', 'http://localhost.53');
+  define('HTTP_CATALOG_SERVER', 'http://localhost.53');
+  define('HTTPS_CATALOG_SERVER', 'http://localhost.53');
+  define('ENABLE_SSL_CATALOG', 'false');
+  define('DIR_FS_DOCUMENT_ROOT', '/var/www/oscommerce2/catalog/');
+  define('DIR_WS_ADMIN', '/oscommerce2/catalog/admin/');
+  define('DIR_FS_ADMIN', '/var/www/oscommerce2/catalog/admin/');
+  define('DIR_WS_CATALOG', '/oscommerce2/catalog/');
+  define('DIR_FS_CATALOG', '/var/www/oscommerce2/catalog/');
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
   define('DIR_WS_CATALOG_IMAGES', DIR_WS_CATALOG . 'images/');
@@ -37,11 +26,10 @@
   define('DIR_FS_CATALOG_MODULES', DIR_FS_CATALOG . 'includes/modules/');
   define('DIR_FS_BACKUP', DIR_FS_ADMIN . 'backups/');
 
-// define our database connection
-  define('DB_SERVER', '');
-  define('DB_SERVER_USERNAME', 'mysql');
-  define('DB_SERVER_PASSWORD', '');
-  define('DB_DATABASE', 'osCommerce');
+  define('DB_SERVER', '127.0.0.1');
+  define('DB_SERVER_USERNAME', 'oscommerce2');
+  define('DB_SERVER_PASSWORD', 'demo');
+  define('DB_DATABASE', 'oscommerce2_v2.2rc1');
   define('USE_PCONNECT', 'false');
-  define('STORE_SESSIONS', '');
+  define('STORE_SESSIONS', 'mysql');
 ?>
